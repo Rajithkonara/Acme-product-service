@@ -1,11 +1,13 @@
 package com.acme.products.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
 import com.acme.products.domain.entity.Product;
 import com.acme.products.domain.request.MultipleProductPriceRequest;
+import com.acme.products.domain.response.PriceDisplayResponse;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +47,22 @@ public class PriceCalculatorService {
 
     log.info("Total price : {} of the product {}", totalPrice, product.getName());
     return totalPrice;
+  }
+
+  /**
+   * Return the price as list per unit
+   *
+   * @param productId productId
+   * @return price list
+   */
+  public List<PriceDisplayResponse> getPriceList(String productId, int noOfUnits) {
+    List<PriceDisplayResponse> list = new ArrayList<>();
+    for (int i = 1; i <= noOfUnits; i++) {
+      Double price = calculateProductItemPrice(productId, i);
+      PriceDisplayResponse priceDisplayResponse = new PriceDisplayResponse(i, price);
+      list.add(priceDisplayResponse);
+    }
+    return list;
   }
 
   /**

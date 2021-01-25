@@ -1,6 +1,7 @@
 package com.acme.products.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import org.mockito.MockitoAnnotations;
 
 import com.acme.products.domain.entity.Product;
 import com.acme.products.domain.request.MultipleProductPriceRequest;
+import com.acme.products.domain.response.PriceDisplayResponse;
 
 class PriceCalculatorServiceTest {
 
@@ -74,7 +76,7 @@ class PriceCalculatorServiceTest {
   }
 
   @ParameterizedTest
-  @CsvSource({"3, 472.5", "1, 175.0"} )
+  @CsvSource({"3, 472.5", "1, 175.0"})
   void Should_Return_CartonProductPrice_For_ProductOne(int noOfCartons, double expected) {
     Product product = getProduct();
     when(productService.getProduct(PRODUCT_ID)).thenReturn(product);
@@ -83,7 +85,7 @@ class PriceCalculatorServiceTest {
   }
 
   @ParameterizedTest
-  @CsvSource({"1, 825.00", "3, 2227.5", "4, 2970"} )
+  @CsvSource({"1, 825.00", "3, 2227.5", "4, 2970"})
   void Should_Return_CartonProductPrice_For_ProductTwo(int noOfCartons, double expected) {
     Product product = getProductTwo();
     when(productService.getProduct(PRODUCT_ID_2)).thenReturn(product);
@@ -107,6 +109,14 @@ class PriceCalculatorServiceTest {
     double v = priceCalculatorService.calculateMultipleProductPrice(multipleProductPriceRequests);
 
     System.out.println("Total " + v);
+  }
+
+  @Test
+  void Should_Return_PriceList() {
+    when(productService.getProduct(PRODUCT_ID)).thenReturn(getProduct());
+    List<PriceDisplayResponse> priceList = priceCalculatorService.getPriceList(PRODUCT_ID, 1);
+    assertNotNull(priceList);
+    assertEquals(11.375, priceList.get(0).getTotalPrice());
   }
 
   private Product getProduct() {
