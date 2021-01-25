@@ -11,7 +11,7 @@
   </parent>
   <groupId>com.acme.products</groupId>
   <artifactId>product-service</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0</version>
   <name>product-service</name>
   <description>Product Service</description>
   <properties>
