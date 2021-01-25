@@ -15,7 +15,7 @@ All dependencies are available in pom.xml.
 src/main/resources before building the application. 
 - Create a database as given in your configuration.
 
-## Run Test
+## Run Unit Test
 ```
 mvn test
 ```
@@ -30,7 +30,7 @@ mvn clean clen install
 java -jar target/product-service-1.0.0-SNAPSHOT.jar
 ```
 - Insert the sample data available in src/main/resources/script.sql to the product table
-
+- Use the provided postman collection in src/main/resources/Acme.postman_collection.json to try out the API's
 ### Reference Documentation
 For further reference, please consider the following sections:
 

@@ -1,0 +1,166 @@
+{
+	"info": {
+		"_postman_id": "7f6cc627-6fe0-4aba-8ad7-c3e0f3ee6009",
+		"name": "Acme",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "calculate price",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"pid-1feeb944-dd0b-49cf-be8f-60db1925eef0\",\n    \"noOfProducts\": 60\n}   "
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/product/price",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"product",
+						"price"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "calculate price - 2",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"pid-fbd7be8b-15e8-4d85-ad50-35bdba139f44\",\n    \"noOfProducts\": 5\n}   "
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/product/price",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"product",
+						"price"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "calculate carton price",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"pid-fbd7be8b-15e8-4d85-ad50-35bdba139f44\",\n    \"noOfCartons\": 1\n}   "
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/product/price/carton",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"product",
+						"price",
+						"carton"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get price list by units",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/product/price/pid-1feeb944-dd0b-49cf-be8f-60db1925eef0/50",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"product",
+						"price",
+						"pid-1feeb944-dd0b-49cf-be8f-60db1925eef0",
+						"50"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/product",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"product"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
