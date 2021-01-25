@@ -38,20 +38,32 @@ public class ProductController {
 
   @GetMapping(path = "")
   public ResponseEntity<ResponseWrapper> getAllProducts() {
-    List<Product> products = productService.getProducts();
-    ProductResponse productResponse = new ProductResponse(products);
+    try {
+      List<Product> products = productService.getProducts();
+      ProductResponse productResponse = new ProductResponse(products);
 
-    ResponseWrapper responseWrapper = new SuccessResponseWrapper(SUCCESS, productResponse);
-    return new ResponseEntity<>(responseWrapper, HttpStatus.OK);
+      ResponseWrapper responseWrapper = new SuccessResponseWrapper(SUCCESS, productResponse);
+      return new ResponseEntity<>(responseWrapper, HttpStatus.OK);
+    } catch (ProductServiceException e) {
+      return new ResponseEntity<>(
+          new ErrorResponseWrapper("Error occurred while getting products", null),
+          HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @GetMapping(path = "price/{id}/{units}")
   public ResponseEntity<ResponseWrapper> getAllPriceByUnits(
       @PathVariable String id, @PathVariable int units) {
-    List<PriceDisplayResponse> products = priceCalculatorService.getPriceList(id, units);
-    PriceListResponse priceListResponse = new PriceListResponse(products);
-    ResponseWrapper responseWrapper = new SuccessResponseWrapper(SUCCESS, priceListResponse);
-    return new ResponseEntity<>(responseWrapper, HttpStatus.OK);
+    try {
+      List<PriceDisplayResponse> products = priceCalculatorService.getPriceList(id, units);
+      PriceListResponse priceListResponse = new PriceListResponse(products);
+      ResponseWrapper responseWrapper = new SuccessResponseWrapper(SUCCESS, priceListResponse);
+      return new ResponseEntity<>(responseWrapper, HttpStatus.OK);
+    } catch (ProductServiceException e) {
+      return new ResponseEntity<>(
+          new ErrorResponseWrapper("Error occurred while getting product price by units", null),
+          HttpStatus.INTERNAL_SERVER_ERROR);
+    }
   }
 
   @PostMapping(path = "price")
