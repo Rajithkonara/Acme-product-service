@@ -19,7 +19,9 @@ import org.springframework.stereotype.Component;
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class SimpleCorsFilter implements Filter {
 
-  public SimpleCorsFilter() {}
+  public SimpleCorsFilter() {
+    // default implementation ignored
+  }
 
   @Override
   public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain)
@@ -39,8 +41,12 @@ public class SimpleCorsFilter implements Filter {
   }
 
   @Override
-  public void init(FilterConfig filterConfig) {}
+  public void init(FilterConfig filterConfig) {
+    // default implementation ignored
+  }
 
   @Override
-  public void destroy() {}
+  public void destroy() {
+    // default implementation ignored
+  }
 }

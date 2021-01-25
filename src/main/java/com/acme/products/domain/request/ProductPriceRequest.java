@@ -10,7 +10,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductPriceRequest extends RequestDto {
-
   private String productId;
   private int noOfProducts;
 }

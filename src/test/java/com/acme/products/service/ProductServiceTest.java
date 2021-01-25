@@ -39,7 +39,7 @@ class ProductServiceTest {
   }
 
   @Test
-  void Should_Exception_When_GetProductListFailed() {
+  void Should_Throw_Exception_When_GetProductListFailed() {
     when(productRepository.findAll()).thenThrow(new DataAccessException("failed") {});
     assertThrows(ProductServiceException.class, () -> productService.getProducts());
   }
@@ -52,8 +52,13 @@ class ProductServiceTest {
   }
 
   @Test
-  void Should_Exception_When_GetProductByIdFailed() {
+  void Should_Throw_Exception_When_GetProductByIdFailed() {
     when(productRepository.findById(P_ID)).thenThrow(new DataAccessException("failed") {});
+    assertThrows(ProductServiceException.class, () -> productService.getProduct(P_ID));
+  }
+
+  @Test
+  void Should_Throw_Exception_When_GetProductByIdNotFound() {
     assertThrows(ProductServiceException.class, () -> productService.getProduct(P_ID));
   }
 }
